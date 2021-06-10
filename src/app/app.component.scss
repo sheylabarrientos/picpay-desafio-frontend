@@ -1,20 +1,38 @@
+*{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.4px;
+}
+
 /* List of Users */
 
 .user {
-  background: linear-gradient(186.5deg, #3c3e64 0.83%, #1d1e2a 100%);
-  box-shadow: 0 1px 0 #ffffff, 0px -1px 0px #ffffff;
-  color: #fff;
-  padding: 20px 40px;
+  background: linear-gradient(180deg, rgba(252,255,250,1) 0%, rgba(248,252,248,1) 100%);
+  box-shadow: 0 1px 2px #22c25f, 0px -1px 0px #22c25f;
+  color: #000;
+  padding: 20px 30px;
 
   display: flex;
   align-items: center;
 }
 
-.user > img {
-  border-radius: 50%;
+.user-name{
+  color: #007aff;
+  font-weight: 500;
+}
+
+.user > img { 
+  //border-radius: 28% 68% 25% 58% / 45% 45% 45% 45% ; estilo alternativo
+  border-radius: 50px;
   height: 80px;
   width: 80px;
+  border: double 3px transparent;
+  background-image: linear-gradient(white, white), radial-gradient(circle at top left, #60f558, #6dc7ca);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
 }
+
+
 
 .user > .info-wrapper {
   margin-left: 16px;
@@ -22,6 +40,13 @@
 
 .user > .pay-button {
   margin-left: auto;
+  height: 35px;
+  width: 75px;
+  border-radius: 5px;
+  background-color: #007aff;
+  color: #f0f0f0;
+  border: 1px solid #0069db;
+  box-shadow: 0px 5px 10px #89b2de;
 }
 
 /* Payment Modal */
