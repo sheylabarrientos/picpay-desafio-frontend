@@ -1,0 +1,33 @@
+<div class="modal-backdrop" [ngClass]="{'show': openModal, 'hidden': !openModal }">
+    <div class="modal" [ngClass]="{'show': openModal, 'hidden': !openModal }">
+        <div class="title-payment">
+        Pagamento para <span class="payment-user-name">{{user?.name}}</span>
+        </div>
+
+        <div class="container-image">
+            <img src="{{user?.img}}" class="img-payment">
+        </div>
+
+        <form [formGroup]="cardForm" >
+            <div class="form-group">
+                <div class="content">
+                <input type="number" placeholder="R$ 0,00" formControlName="value" class="input-value"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="cards">
+                    <select class="select-cards">
+                    <option *ngFor="let card of cards" [ngValue]="prf">Cartão com final {{card.card_number | slice:-4}}</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+
+        <button type="button" class="pay-button">
+            Pagar
+        </button>
+
+        
+    </div>
+</div>

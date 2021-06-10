@@ -4,17 +4,14 @@ import {HttpClient, HttpHeaders, HttpEvent, HttpErrorResponse, HttpEventType} fr
 import {environment} from '../environments/environment';
 
 import { Observable, throwError  } from 'rxjs';
-//import { retry, catchError } from 'rxjs/operators';
-//import {User} from '../models/user';
+
 
 @Injectable({
     providedIn: 'root'
   })
 
 export class UsersService { 
-  
   USERS_URL = environment.usersURL;
-  
   constructor(private http: HttpClient) { }
 
   httpOptions = {
