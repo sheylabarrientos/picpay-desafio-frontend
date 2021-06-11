@@ -11,7 +11,8 @@
         <form [formGroup]="cardForm" >
             <div class="form-group">
                 <div class="content">
-                <input type="number" placeholder="R$ 0,00" formControlName="value" class="input-value"/>
+                <input type="text" placeholder="R$ 0,00" formControlName="value" class="input-value"
+                currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'center' }"/>
                 </div>
             </div>
 

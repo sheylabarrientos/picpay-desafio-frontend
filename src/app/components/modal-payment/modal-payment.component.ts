@@ -43,8 +43,8 @@ export class ModalPaymentComponent implements OnInit {
 
   ngOnInit() {
     this.cardForm = this.formBuilder.group({
-      value: ['', Validators.required, Validators.min(1)],
-      card: ['', Validators.required]
+      value: ['', [Validators.required, Validators.min(1)]],
+      card: ['', [Validators.required]]
     })
   }
 
