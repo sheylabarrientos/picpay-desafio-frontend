@@ -10,13 +10,17 @@ import {User} from '../../../models/user';
   styleUrls: ['./modal-payment.component.scss']
 })
 export class ModalPaymentComponent implements OnInit {
-  constructor(private el: ElementRef, private formBuilder: FormBuilder) { }
+  
+  constructor(
+    private el: ElementRef, 
+    private formBuilder: FormBuilder) { }
 
   @Input() openModal: boolean = false;
   @Input() user: User;
   theme = localStorage.getItem('theme-color');
 
   cardForm: FormGroup;
+  cardSelectedObj: Card;
   
   cards: Card[] = [
     // valid card
@@ -35,19 +39,38 @@ export class ModalPaymentComponent implements OnInit {
     },
   ]
 
-  showLastNumbers(){
-    this.cards.map((data) => {
-      return data.card_number.slice(data.card_number.length - 5);
+  ngOnInit() {
+    this.initForm();
+    this.setFormInit();
+    this.cardSelectedObj = this.cards[0];
+  }
+
+
+  cardSelected(event){
+    const card = event.target.value;
+    this.cardForm.patchValue({ card: card});
+    this.cardSelectedObj = this.cards.find(function(element) {
+      return element.card_number === card;
+    });
+    console.log(this.cardSelectedObj)
+  }
+
+  initForm(){
+    this.cardForm = this.formBuilder.group({
+      value: ['', [Validators.required]],
+      card: ['', [Validators.required]]
     });
   }
 
-  ngOnInit() {
-    this.cardForm = this.formBuilder.group({
-      value: ['', [Validators.required, Validators.min(1)]],
-      card: ['', [Validators.required]]
+  setFormInit(){
+    this.cardForm.patchValue({
+      card: this.cards[0].card_number,
     })
   }
 
+  submitValues(){
+      console.log(this.cardForm.value.card, this.cardForm.value.value);
+  }
   
 
 }

@@ -8,7 +8,7 @@
             <img src="{{user?.img}}" class="img-payment">
         </div>
 
-        <form [formGroup]="cardForm" >
+        <form [formGroup]="cardForm" (ngSubmit)="submitValues()" >
             <div class="form-group">
                 <div class="content">
                 <input type="text" placeholder="R$ 0,00" formControlName="value" class="input-value"
@@ -17,17 +17,25 @@
             </div>
 
             <div class="form-group">
-                <div class="cards">
-                    <select class="select-cards">
-                    <option *ngFor="let card of cards" [ngValue]="prf">Cartão com final {{card.card_number | slice:-4}}</option>
-                    </select>
+                <div class="container-cards">
+                    <div class="cards">
+                        <select class="select-cards" (change)="cardSelected($event)">
+                        <option *ngFor="let card of cards; let i = index" [value]="card.card_number">Cartão com final {{card.card_number | slice:-4}}</option>
+                        </select>
+                    </div>
+                    <div class="cards-flags">
+                        <img src="../../../assets/mastercard-logo.png" class="flag master" *ngIf="cardSelectedObj.flag === 'master' ">
+                        <img src="../../../assets/visa-logo.png" class="flag visa" *ngIf="cardSelectedObj.flag === 'visa'">
+                    </div>
                 </div>
             </div>
         </form>
 
-        <button type="button" class="pay-button">
-            Pagar
-        </button>
+        <div class="button-container">
+            <button type="button" class="pay-button">
+                Pagar
+            </button>
+        </div>
 
         
     </div>
