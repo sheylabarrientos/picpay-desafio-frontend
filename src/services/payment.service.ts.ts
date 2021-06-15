@@ -23,8 +23,8 @@ export class PaymentService {
     })
   }
 
-  transaction(data): Observable<any> {
-    return this.http.post<any>(this.TRANSACTION_URL, JSON.stringify(data), this.httpOptions)
+  transaction(obj): Observable<any> {
+    return this.http.post<any>(this.TRANSACTION_URL, JSON.stringify(obj), this.httpOptions)
         .pipe(
             retry(1),
             catchError(this.handleError)

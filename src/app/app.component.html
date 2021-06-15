@@ -37,7 +37,9 @@
 
   <app-modal-payment  
     [openModal]="modal_payment" 
-    [user]="user">
+    [user]="user"
+    (closeModal)="fechouModal($event)"
+    (success)="sucesso($event)">
   </app-modal-payment>
   <modal-payment-result></modal-payment-result>
 

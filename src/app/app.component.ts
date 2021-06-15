@@ -66,5 +66,13 @@ export class AppComponent implements OnInit{
     });
   }
 
+  fechouModal(e){
+    console.log("FECHOU O MODAL", e );
+  }
+
+  sucesso(e){
+    console.log("sucesso", e)
+  }
+
 
 }
