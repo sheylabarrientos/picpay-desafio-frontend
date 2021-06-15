@@ -95,6 +95,11 @@ input.input-value:-moz-placeholder { /* Firefox 18- */
     text-align: center;
     border-radius: 20px 20px 0px 0px;
   }
+
+  .title-payment::after {
+        content: "✖";
+        right: 0;
+    }
   
   .modal > .title > span {
     color: #cddc39;
@@ -144,13 +149,13 @@ input.input-value:-moz-placeholder { /* Firefox 18- */
     align-items: center;
     justify-content: center;
     display: flex;
-    padding-left: 15px;
+    padding-left: 25px;
     //margin: 0 auto;
   }
 
   .select-cards{
     width: 100%;
-    height: 40px;
+    height: 38px;
     font-size: 22px;
     margin: 0 auto;
     padding-left: 10px;
@@ -172,21 +177,21 @@ input.input-value:-moz-placeholder { /* Firefox 18- */
     align-items: center;
     display: flex;
     justify-content: flex-end;
-    padding: 36px 25px 20px 0px;
+    padding: 36px 25px 25px 25px;
   }
 
   .pay-button{
-    width: 150px;
-    height: 35px;
+    width: 100%;
+    height: 40px;
     border-radius: 10px;
     font-size: 20px;
     background: #68d592;
-    background: radial-gradient(circle, #68d592 0%, #22c25f 100%);
+    background: radial-gradient(circle, #5ab47d 0%, #22c25f 100%);
     color: white;
     font-family: "Roboto";
     letter-spacing: 0.5px;
     border: none;
-    box-shadow: 0px 4px 10px #83b094;
+    box-shadow: 0px 2px 8px #29b75e;
   }
 
   //Responsividade 

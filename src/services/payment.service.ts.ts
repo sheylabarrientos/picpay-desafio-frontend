@@ -13,7 +13,7 @@ import { TransactionPayload } from 'src/models/transaction';
     providedIn: 'root'
   })
 
-export class UsersService { 
+export class PaymentService { 
   TRANSACTION_URL = environment.transactionsURL;
   constructor(private http: HttpClient) { }
 
@@ -23,8 +23,8 @@ export class UsersService {
     })
   }
 
-  public transaction(data): Observable<TransactionPayload> {
-    return this.http.post<TransactionPayload>(this.TRANSACTION_URL, JSON.stringify(data), this.httpOptions)
+  transaction(data): Observable<any> {
+    return this.http.post<any>(this.TRANSACTION_URL, JSON.stringify(data), this.httpOptions)
         .pipe(
             retry(1),
             catchError(this.handleError)

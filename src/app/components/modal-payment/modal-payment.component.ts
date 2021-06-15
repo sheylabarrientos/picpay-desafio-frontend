@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import {Card} from '../../../models/card';
 import {User} from '../../../models/user';
 
+import {PaymentService} from '../../../services/payment.service.ts'
+
 @Component({
   selector: 'app-modal-payment',
   templateUrl: './modal-payment.component.html',
@@ -13,7 +15,8 @@ export class ModalPaymentComponent implements OnInit {
   
   constructor(
     private el: ElementRef, 
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    private payservice: PaymentService) { }
 
   @Input() openModal: boolean = false;
   @Input() user: User;
@@ -57,7 +60,7 @@ export class ModalPaymentComponent implements OnInit {
 
   initForm(){
     this.cardForm = this.formBuilder.group({
-      value: ['', [Validators.required]],
+      value: ['', [Validators.required, Validators.minLength(0.5), Validators.maxLength(5000)]],
       card: ['', [Validators.required]]
     });
   }
@@ -69,7 +72,19 @@ export class ModalPaymentComponent implements OnInit {
   }
 
   submitValues(){
-      console.log(this.cardForm.value.card, this.cardForm.value.value);
+      if (!this.cardForm.valid) {
+        return false;
+      } else {
+        const teste = this.payservice.transaction(
+          this.cardForm.controls.card.value, this.cardForm.controls.value.value
+          ).subscribe((data) => {
+            console.log(data);
+        })
+
+        console.log(this.cardForm.controls.value);
+      }
+
+      console.log(this.cardForm.controls.value.value, this.cardForm.controls.card.value);
   }
   
 

@@ -11,8 +11,11 @@
         <form [formGroup]="cardForm" (ngSubmit)="submitValues()" >
             <div class="form-group">
                 <div class="content">
-                <input type="text" placeholder="R$ 0,00" formControlName="value" class="input-value"
-                currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'center' }"/>
+                <input 
+                type="text" placeholder="R$ 0,00" 
+                formControlName="value" class="input-value" 
+                currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'center' }"
+                  />
                 </div>
             </div>
 
@@ -29,14 +32,13 @@
                     </div>
                 </div>
             </div>
+
+            <div class="button-container">
+                <button type="submit" class="pay-button" [disabled]="cardForm.invalid">
+                    Pagar
+                </button>
+            </div>
         </form>
-
-        <div class="button-container">
-            <button type="button" class="pay-button">
-                Pagar
-            </button>
-        </div>
-
         
     </div>
 </div>
