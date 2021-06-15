@@ -11,11 +11,23 @@
         <form [formGroup]="cardForm" (ngSubmit)="submitValues()" >
             <div class="form-group">
                 <div class="content">
-                <input 
-                type="text" placeholder="R$ 0,00" 
-                formControlName="value" class="input-value" 
-                currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'center' }"
-                  />
+                    <input 
+                        type="text" placeholder="R$ 0,00" 
+                        formControlName="value" class="input-value" 
+                        currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'center' }"
+                    />
+                </div>
+                <div *ngIf="cardForm.get('value').invalid && 
+                        cardForm.get('value').errors && 
+                        (cardForm.get('value').dirty || cardForm.get('value').touched)">
+                    <small class="text-danger"
+                        *ngIf="cardForm.get('value').hasError('required')">
+                        Digite um valor.
+                    </small>
+                    <small class="text-danger"
+                        *ngIf="cardForm.get('value').hasError('minlength')">
+                        Valor minimo deve ser R$ 0,01.
+                    </small>
                 </div>
             </div>
 
@@ -34,7 +46,7 @@
             </div>
 
             <div class="button-container">
-                <button type="submit" class="pay-button" [disabled]="cardForm.invalid">
+                <button type="submit" class="pay-button">
                     Pagar
                 </button>
             </div>

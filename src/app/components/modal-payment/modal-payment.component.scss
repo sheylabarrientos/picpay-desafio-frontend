@@ -82,22 +82,28 @@ input.input-value:-moz-placeholder { /* Firefox 18- */
     background: #fff;
     margin: 32px 0;
     width: 420px;
-    border-radius: 20px 20px 0px 0px;
+    border-radius: 20px 20px 20px 20px;
     z-index: 2;
   }
   
   .modal > .title-payment {
-    background: #474971;
+    background: #22c25f;
     color: #ffffff;
     font-weight: 500;
     font-size: 16px;
     padding: 16px 24px;
     text-align: center;
-    border-radius: 20px 20px 0px 0px;
-
-    
+    border-radius: 20px 20px 0px 0px;    
   }
 
+  .text-danger{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: #c62020;
+    margin-top: -18px;
+    font-style: italic;
+  }
   // .title-payment::after {
   //       content: "✖";
   //       right: 0;
@@ -143,11 +149,13 @@ input.input-value:-moz-placeholder { /* Firefox 18- */
   }
 
   .container-cards{
-      display: flex;
+    display: flex;
+    width: 96%;
+    margin: 0 auto;
   }
   
   .cards{
-    width: 70%;
+    width: 75%;
     align-items: center;
     justify-content: center;
     display: flex;
@@ -164,7 +172,7 @@ input.input-value:-moz-placeholder { /* Firefox 18- */
   }
 
   .cards-flags{
-    width: 30%;
+    width: 25%;
     align-items: center;
     justify-content: center;
     display: flex;
@@ -200,6 +208,6 @@ input.input-value:-moz-placeholder { /* Firefox 18- */
 
   @media (max-width: 500px){
     .modal{
-        width: 380px;
+      width: 96%;
     }
   }

@@ -1,4 +1,6 @@
-import { Component, OnInit, ViewEncapsulation, ElementRef, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
+import {User} from '../../../models/user';
 
 @Component({
   selector: 'app-modal-payment-result',
@@ -9,7 +11,15 @@ export class ModalPaymentResultComponent implements OnInit {
 
   constructor() { }
 
+  @Input() openModalResult: boolean = false;
+  @Input() user: User;
+
+  @Output() closeModalResult: EventEmitter<any> = new EventEmitter();
+
   ngOnInit() {
-  }
+    console.log("iniciou o result")
+  }  
+
+
 
 }

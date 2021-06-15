@@ -8,7 +8,6 @@
 
     <div class="theme-options" (click)="changeTheme()">
       <div>TEMA</div>
-      <!-- <img src="https://www.pngitem.com/pimgs/m/129-1296529_third-quarter-clipart-contrast-icon-hd-png-download.png" class="img-theme"> -->
     </div>
   </div>
 
@@ -28,7 +27,7 @@
           </div>
         </div>
 
-        <button type="button" class="pay-button" title="Pagar para {{user-name}}" (click)="changeModalPayment(user)">
+        <button type="button" class="pay-button" title="Pagar para {{user-name}}" (click)="changeModal(user, true)">
           Pagar
         </button>
       </div>
@@ -36,11 +35,16 @@
   </div>
 
   <app-modal-payment  
-    [openModal]="modal_payment" 
-    [user]="user"
-    (closeModal)="fechouModal($event)"
-    (success)="sucesso($event)">
+  [openModal]="modal_payment" 
+  [user]="user"
+  (closeModal)="changeModal($event)"
+  (success)="sucesso($event)">
   </app-modal-payment>
-  <modal-payment-result></modal-payment-result>
+
+  <app-modal-payment-result 
+  [openModalResult]="modal_result" 
+  [user]="user"
+  (closeModalResult)="!modal_result">
+   </app-modal-payment-result>
 
 </div>

@@ -1,12 +1,16 @@
-<div class="modal-backdrop" [ngClass]="backdrop ? 'show' : 'hidden' ">
-    <div class="modal-result hidden" [ngClass]="modal_result ? 'show' : 'hidden' ">
+<div class="modal-backdrop" [ngClass]="{'show': openModalResult, 'hidden': !openModalResult }">
+  <div class="modal" [ngClass]="{'show': openModalResult, 'hidden': !openModalResult }">
     <div class="title">
-      Recibo de pagamento
+      Recibo de pagamento para {{user?.name}}
+    </div>
+
+    <div class="body">
+      <span class="user-nick"> {{user?.username}} </span><br /> 
+      <span class="text"> recebeu seu pagamento </span>
     </div>
 
     <div class="content">
-      O pagamento foi concluido com sucesso.<br />
-      O pagamento <strong>não</strong> foi concluido com sucesso.
+      O pagamento foi concluido com <b>sucesso</b>.<br />
     </div>
   </div>
 </div>

@@ -33,25 +33,15 @@ export class AppComponent implements OnInit{
     this.getUsers();
   }
   
-  
-  changeModalPayment(contact: User): void{
+  changeModal(contact?: User, status?: boolean): void{
+    if(status){
+    this.modal_payment = true
     this.user = contact;
-    console.log(this.user)
-    this.modal_payment = !this.modal_payment;
     this.backdrop = !this.backdrop;
+    }else{
+      this.modal_payment = false;
+    }
   }
-
-  changeModalResult(contact){
-    this.modal_result = !this.modal_result;
-    this.backdrop = !this.backdrop;
-  }
-
-  closeAll(){
-    this.modal_payment = false;
-    this.modal_result = false;
-    this.backdrop = false;
-  }
-
 
   changeTheme(){
     const theme = localStorage.getItem('theme-color');
@@ -59,19 +49,17 @@ export class AppComponent implements OnInit{
     this.storedTheme = localStorage.getItem('theme-color');
   }
 
-
   getUsers(){
     this.usersService.getUsers().subscribe((users) => {
      this.users = users;
     });
   }
 
-  fechouModal(e){
-    console.log("FECHOU O MODAL", e );
-  }
-
   sucesso(e){
-    console.log("sucesso", e)
+    this.modal_result = true;
+    // setTimeout(() => {
+    //   this.modal_result = false;
+    // }, 5000);
   }
 
 

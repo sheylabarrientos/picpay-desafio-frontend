@@ -48,10 +48,8 @@ export class ModalPaymentComponent implements OnInit {
 
   ngOnInit() {
     this.initForm();
-    this.setFormInit();
     this.cardSelectedObj = this.cards[0];
   }
-
 
   cardSelected(event){
     const card = event.target.value;
@@ -64,15 +62,9 @@ export class ModalPaymentComponent implements OnInit {
 
   initForm(){
     this.cardForm = this.formBuilder.group({
-      value: ['', [Validators.required, Validators.minLength(0.5), Validators.maxLength(5000)]],
-      card: ['', [Validators.required]]
+      value: ['', [Validators.required, Validators.minLength(0.1), Validators.maxLength(5000)]],
+      card: [this.cards[0].card_number, [Validators.required]]
     });
-  }
-
-  setFormInit(){
-    this.cardForm.patchValue({
-      card: this.cards[0].card_number,
-    })
   }
 
   submitValues(){
@@ -81,11 +73,12 @@ export class ModalPaymentComponent implements OnInit {
       } else {
         const obj = {card:this.cardForm.controls.card.value, value: this.cardForm.controls.value.value};
         this.payservice.transaction(obj).subscribe((data) => {
-            data.success === true ? this.success.emit(true) : this.success.emit(false)
+            if(data.success){
+              this.initForm();
+              this.success.emit(true);
+              this.closeModal.emit(true);
+            }
         });
-        console.log(this.cardForm.controls.value);
       }
   }
-  
-
 }
