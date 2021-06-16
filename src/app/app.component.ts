@@ -20,6 +20,7 @@ backdrop = false;
 modalPayment = false;
 modalResult = false;
 closeModalResult = false;
+res = false;
 
 user: User;
 
@@ -49,7 +50,8 @@ getUsers() {
   });
 }
 
-sucesso(e) {
+response(e) {
+  this.res = e;
   this.modalResult = true;
 }
 

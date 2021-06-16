@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ElementRef, Input, OnDestroy, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ElementRef, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 import {Card} from '../../../models/card';
@@ -12,7 +12,6 @@ import {PaymentService} from '../../../services/payment.service.ts';
   styleUrls: ['./modal-payment.component.scss']
 })
 export class ModalPaymentComponent implements OnInit {
-
 constructor(
   private el: ElementRef,
   private formBuilder: FormBuilder,
@@ -22,10 +21,10 @@ constructor(
 @Input() user: User;
 
 @Output() closeModal: EventEmitter<any> = new EventEmitter();
+@Output() res: EventEmitter<any> = new EventEmitter();
 @Output() Modal: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-theme = localStorage.getItem('theme-color');
-
+loading = false;
 cardForm: FormGroup;
 cardSelectedObj: Card;
 
@@ -67,15 +66,19 @@ initForm() {
 }
 
 submitValues() {
+    this.loading = true;
     if (!this.cardForm.valid) {
       return false;
     } else {
       const obj = {card: this.cardForm.controls.card.value, value: this.cardForm.controls.value.value};
       this.payservice.transaction(obj).subscribe((data) => {
-          if (data.successModal) {
+          if (data.success) {
+            this.loading = false;
             this.initForm();
-            this.successModal.emit(true);
+            this.res.emit(true);
             this.closeModal.emit(true);
+          } else {
+            this.res.emit(false);
           }
       });
     }

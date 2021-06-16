@@ -1,6 +1,9 @@
 <div class="modal-backdrop" [ngClass]="{'show': openModal, 'hidden': !openModal }" (click)="clickout($event)">
     <div (click)="$event.stopPropagation()" class="stop-propagation">    
         <div class="modal" [ngClass]="{'show': openModal, 'hidden': !openModal }">
+            <div class="loading" *ngIf="loading">
+                <img src="../../../assets/loading.gif">
+            </div>
             <div class="title-payment">
             Pagamento para <span class="payment-user-name">{{user?.name}}</span>
             </div>

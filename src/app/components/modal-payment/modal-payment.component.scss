@@ -6,6 +6,19 @@
     display: block;
 }
 
+.loading{
+  position: absolute;
+    /* background: red; */
+    display: flex;
+    width: inherit;
+    border-radius: 18px;
+    background: #ffffff;
+    opacity: 0.7;
+    justify-content: center;
+    align-items: center;
+    height: 418px;
+}
+
 .container-image{
     display: flex;
     justify-content: center;

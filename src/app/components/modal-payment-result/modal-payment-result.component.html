@@ -10,9 +10,14 @@
         <span class="text"> recebeu seu pagamento </span>
       </div>
 
-      <div class="content">
+      <div class="content" *ngIf="response">
         O pagamento foi concluido com <b>sucesso</b>.<br />
       </div>
+
+      <div class="content" *ngIf="!response">
+        Não foi possivel realizar o pagamento <br/>tente novamente mais tarde.<br />
+      </div>
+
     </div>
   </div>
 </div>

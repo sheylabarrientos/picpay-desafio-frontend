@@ -38,12 +38,13 @@
   [openModal]="modalPayment" 
   [user]="user"
   (closeModal)="changeModal($event)"
-  (successModal)="sucesso($event)">
+  (res)="response($event)">
   </app-modal-payment>
 
   <app-modal-payment-result 
   [openModalResult]="modalResult" 
   [user]="user"
+  [response]="res"
   (closeModalResult)="closeResult($event)">
    </app-modal-payment-result>
 

@@ -13,6 +13,7 @@ constructor() { }
 
 @Input() openModalResult = false;
 @Input() user: User;
+@Input() response;
 
 @Output() closeModalResult: EventEmitter<any> = new EventEmitter();
 
