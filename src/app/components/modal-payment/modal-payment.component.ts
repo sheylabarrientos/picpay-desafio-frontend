@@ -68,7 +68,6 @@ initForm() {
 submitValues() {
     this.loading = true;
     if (!this.cardForm.valid) {
-      console.log(this.cardForm)
       this.loading = false;
       return false;
     } else {
