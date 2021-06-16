@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import {Card} from '../../../models/card';
 import {User} from '../../../models/user';
 
-import {PaymentService} from '../../../services/payment.service.ts'
+import {PaymentService} from '../../../services/payment.service.ts';
 
 @Component({
   selector: 'app-modal-payment',
@@ -12,78 +12,77 @@ import {PaymentService} from '../../../services/payment.service.ts'
   styleUrls: ['./modal-payment.component.scss']
 })
 export class ModalPaymentComponent implements OnInit {
-  
-  constructor(
-    private el: ElementRef, 
-    private formBuilder: FormBuilder,
-    private payservice: PaymentService) { }
 
-  @Input() openModal: boolean = false;
-  @Input() user: User;
+constructor(
+  private el: ElementRef,
+  private formBuilder: FormBuilder,
+  private payservice: PaymentService) { }
 
-  @Output() closeModal: EventEmitter<any> = new EventEmitter();
-  @Output() success: EventEmitter<boolean> = new EventEmitter<boolean>();
+@Input() openModal = false;
+@Input() user: User;
 
-  theme = localStorage.getItem('theme-color');
+@Output() closeModal: EventEmitter<any> = new EventEmitter();
+@Output() Modal: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  cardForm: FormGroup;
-  cardSelectedObj: Card;
-  
-  cards: Card[] = [
-    // valid card
-    {
-      card_number: '1111111111111111',
-      cvv: 789,
-      expiry_date: '01/18',
-      flag: "master"
-    },
-    // invalid card
-    {
-      card_number: '4111111111111234',
-      cvv: 123,
-      expiry_date: '01/20',
-      flag: "visa"
-    },
-  ]
+theme = localStorage.getItem('theme-color');
 
-  ngOnInit() {
-    this.initForm();
-    this.cardSelectedObj = this.cards[0];
-  }
+cardForm: FormGroup;
+cardSelectedObj: Card;
 
-  cardSelected(event){
-    const card = event.target.value;
-    this.cardForm.patchValue({ card: card});
-    this.cardSelectedObj = this.cards.find(function(element) {
-      return element.card_number === card;
-    });
-    console.log(this.cardSelectedObj)
-  }
+cards: Card[] = [
+  // valid card
+  {
+    card_number: '1111111111111111',
+    cvv: 789,
+    expiry_date: '01/18',
+    flag: 'master'
+  },
+  // invalid card
+  {
+    card_number: '4111111111111234',
+    cvv: 123,
+    expiry_date: '01/20',
+    flag: 'visa'
+  },
+];
 
-  initForm(){
-    this.cardForm = this.formBuilder.group({
-      value: ['', [Validators.required, Validators.minLength(0.1), Validators.maxLength(5000)]],
-      card: [this.cards[0].card_number, [Validators.required]]
-    });
-  }
+ngOnInit() {
+  this.initForm();
+  this.cardSelectedObj = this.cards[0];
+}
 
-  submitValues(){
-      if (!this.cardForm.valid) {
-        return false;
-      } else {
-        const obj = {card:this.cardForm.controls.card.value, value: this.cardForm.controls.value.value};
-        this.payservice.transaction(obj).subscribe((data) => {
-            if(data.success){
-              this.initForm();
-              this.success.emit(true);
-              this.closeModal.emit(true);
-            }
-        });
-      }
-  }
+cardSelected(event) {
+  const card = event.target.value;
+  this.cardForm.patchValue({ '{card}': card});
+  this.cardSelectedObj = this.cards.find((element) => {
+    return element.card_number === card;
+  });
+}
 
-  clickout(e){
-    this.initForm();
-    this.closeModal.emit(true);
-  }
+initForm() {
+  this.cardForm = this.formBuilder.group({
+    value: ['', [Validators.required, Validators.minLength(0.1), Validators.maxLength(5000)]],
+    card: [this.cards[0].card_number, [Validators.required]]
+  });
+}
+
+submitValues() {
+    if (!this.cardForm.valid) {
+      return false;
+    } else {
+      const obj = {card: this.cardForm.controls.card.value, value: this.cardForm.controls.value.value};
+      this.payservice.transaction(obj).subscribe((data) => {
+          if (data.successModal) {
+            this.initForm();
+            this.successModal.emit(true);
+            this.closeModal.emit(true);
+          }
+      });
+    }
+}
+
+clickout(e) {
+  this.initForm();
+  this.closeModal.emit(true);
+}
 }

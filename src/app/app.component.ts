@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {User} from '../models/user';
-import {UsersService} from '../services/users.service.ts'
+import {UsersService} from '../services/users.service.ts';
 
 import {ModalPaymentComponent} from '../app/components/modal-payment/modal-payment.component';
 import {ModalPaymentResultComponent} from '../app/components/modal-payment-result/modal-payment-result.component';
@@ -12,51 +12,49 @@ import {ModalPaymentResultComponent} from '../app/components/modal-payment-resul
 })
 
 
-export class AppComponent implements OnInit{
-  title = 'Desafio Picpay Front-end';
-  users: User[] = [];
+export class AppComponent implements OnInit {
+title = 'Desafio Picpay Front-end';
+users: User[] = [];
 
-  //modals variables:
-  backdrop: boolean = false;
-  modal_payment = false;
-  modal_result = false;
-  closeModalResult = false;
-  
-  user: User;
+backdrop = false;
+modalPayment = false;
+modalResult = false;
+closeModalResult = false;
 
-  storedTheme: string = localStorage.getItem('theme-color');
+user: User;
 
-  constructor(
-    private usersService: UsersService) {
+storedTheme: string = localStorage.getItem('theme-color');
+
+constructor(
+  private usersService: UsersService) {
+}
+
+ngOnInit(): void {
+  this.getUsers();
+}
+
+changeModal(contact?: User, status?: boolean): void {
+  if (status) {
+    this.modalPayment = true;
+    this.user = contact;
+    this.backdrop = !this.backdrop;
+  } else {
+    this.modalPayment = false;
   }
+}
 
-  ngOnInit(): void {
-    this.getUsers();
-  }
-  
-  changeModal(contact?: User, status?: boolean): void{
-    if(status){
-      this.modal_payment = true;
-      this.user = contact;
-      this.backdrop = !this.backdrop;
-    }else{
-      this.modal_payment = false;
-    }
-  }
+getUsers() {
+  this.usersService.getUsers().subscribe((users) => {
+    this.users = users;
+  });
+}
 
-  getUsers(){
-    this.usersService.getUsers().subscribe((users) => {
-     this.users = users;
-    });
-  }
+sucesso(e) {
+  this.modalResult = true;
+}
 
-  sucesso(e){
-    this.modal_result = true;
-  }
-
-  closeResult(e){
-    console.log(e)
-    this.closeModalResult = true;
-    this.modal_result = false
-  }
+closeResult(e) {
+  this.closeModalResult = true;
+  this.modalResult = false;
+}
 }

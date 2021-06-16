@@ -13,7 +13,7 @@ import { TransactionPayload } from 'src/models/transaction';
     providedIn: 'root'
   })
 
-export class PaymentService { 
+export class PaymentService {
   TRANSACTION_URL = environment.transactionsURL;
   constructor(private http: HttpClient) { }
 
@@ -21,7 +21,7 @@ export class PaymentService {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
-  }
+  };
 
   transaction(obj): Observable<any> {
     return this.http.post<any>(this.TRANSACTION_URL, JSON.stringify(obj), this.httpOptions)
@@ -41,7 +41,6 @@ export class PaymentService {
             // Erro ocorreu no lado do servidor
             errorMessage = `Código do erro: ${error.status}, ` + `mensagem: ${error.message}`;
         }
-        console.log(errorMessage);
         return throwError(errorMessage);
     }
 

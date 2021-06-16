@@ -10,7 +10,7 @@ import { Observable, throwError  } from 'rxjs';
     providedIn: 'root'
   })
 
-export class UsersService { 
+export class UsersService {
   USERS_URL = environment.usersURL;
   constructor(private http: HttpClient) { }
 
@@ -18,7 +18,7 @@ export class UsersService {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
-  }
+  };
 
   getUsers(): Observable<any> {
     return this.http.get(this.USERS_URL, this.httpOptions);
@@ -26,7 +26,7 @@ export class UsersService {
 
   errorHandle(error) {
     let errorMessage = '';
-    if(error.error instanceof ErrorEvent) {
+    if (error.error instanceof ErrorEvent) {
       // Get client-side error
       errorMessage = error.error.message;
     } else {

@@ -35,14 +35,14 @@
   </div>
 
   <app-modal-payment  
-  [openModal]="modal_payment" 
+  [openModal]="modalPayment" 
   [user]="user"
   (closeModal)="changeModal($event)"
-  (success)="sucesso($event)">
+  (successModal)="sucesso($event)">
   </app-modal-payment>
 
   <app-modal-payment-result 
-  [openModalResult]="modal_result" 
+  [openModalResult]="modalResult" 
   [user]="user"
   (closeModalResult)="closeResult($event)">
    </app-modal-payment-result>

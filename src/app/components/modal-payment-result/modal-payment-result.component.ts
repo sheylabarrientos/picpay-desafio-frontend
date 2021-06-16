@@ -9,23 +9,16 @@ import {User} from '../../../models/user';
 })
 export class ModalPaymentResultComponent implements OnInit {
 
-  constructor() { }
+constructor() { }
 
-  @Input() openModalResult: boolean = false;
-  @Input() user: User;
+@Input() openModalResult = false;
+@Input() user: User;
 
-  @Output() closeModalResult: EventEmitter<any> = new EventEmitter();
+@Output() closeModalResult: EventEmitter<any> = new EventEmitter();
 
-  ngOnInit() {
-    
-  }  
+ngOnInit() {}
 
-  clickout(event){
-    console.log("click");
-    this.openModalResult = false;
-    this.closeModalResult.emit(true);
-  }
-
-
-
+clickout(event) {
+  this.closeModalResult.emit(true);
+}
 }
