@@ -20,7 +20,8 @@ export class AppComponent implements OnInit{
   backdrop: boolean = false;
   modal_payment = false;
   modal_result = false;
-
+  closeModalResult = false;
+  
   user: User;
 
   storedTheme: string = localStorage.getItem('theme-color');
@@ -35,18 +36,12 @@ export class AppComponent implements OnInit{
   
   changeModal(contact?: User, status?: boolean): void{
     if(status){
-    this.modal_payment = true
-    this.user = contact;
-    this.backdrop = !this.backdrop;
+      this.modal_payment = true;
+      this.user = contact;
+      this.backdrop = !this.backdrop;
     }else{
       this.modal_payment = false;
     }
-  }
-
-  changeTheme(){
-    const theme = localStorage.getItem('theme-color');
-    theme !== "black-theme" ? localStorage.setItem('theme-color', 'black-theme') : localStorage.setItem('theme-color', '')
-    this.storedTheme = localStorage.getItem('theme-color');
   }
 
   getUsers(){
@@ -57,10 +52,11 @@ export class AppComponent implements OnInit{
 
   sucesso(e){
     this.modal_result = true;
-    // setTimeout(() => {
-    //   this.modal_result = false;
-    // }, 5000);
   }
 
-
+  closeResult(e){
+    console.log(e)
+    this.closeModalResult = true;
+    this.modal_result = false
+  }
 }

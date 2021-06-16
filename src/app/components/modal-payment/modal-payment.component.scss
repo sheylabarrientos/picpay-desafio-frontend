@@ -78,12 +78,17 @@ input.input-value:-moz-placeholder { /* Firefox 18- */
     z-index: -1;
   }
   
+  .stop-propagation{
+    text-align: -webkit-center;
+    display: flex;
+    justify-content: center;
+  }
+
   .modal {
     background: #fff;
-    margin: 32px 0;
     width: 420px;
     border-radius: 20px 20px 20px 20px;
-    z-index: 2;
+    z-index: 9999;
   }
   
   .modal > .title-payment {

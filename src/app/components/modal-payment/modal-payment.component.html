@@ -1,56 +1,58 @@
-<div class="modal-backdrop" [ngClass]="{'show': openModal, 'hidden': !openModal }">
-    <div class="modal" [ngClass]="{'show': openModal, 'hidden': !openModal }">
-        <div class="title-payment">
-        Pagamento para <span class="payment-user-name">{{user?.name}}</span>
-        </div>
-
-        <div class="container-image">
-            <img src="{{user?.img}}" class="img-payment">
-        </div>
-
-        <form [formGroup]="cardForm" (ngSubmit)="submitValues()" >
-            <div class="form-group">
-                <div class="content">
-                    <input 
-                        type="text" placeholder="R$ 0,00" 
-                        formControlName="value" class="input-value" 
-                        currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'center' }"
-                    />
-                </div>
-                <div *ngIf="cardForm.get('value').invalid && 
-                        cardForm.get('value').errors && 
-                        (cardForm.get('value').dirty || cardForm.get('value').touched)">
-                    <small class="text-danger"
-                        *ngIf="cardForm.get('value').hasError('required')">
-                        Digite um valor.
-                    </small>
-                    <small class="text-danger"
-                        *ngIf="cardForm.get('value').hasError('minlength')">
-                        Valor minimo deve ser R$ 0,01.
-                    </small>
-                </div>
+<div class="modal-backdrop" [ngClass]="{'show': openModal, 'hidden': !openModal }" (click)="clickout($event)">
+    <div (click)="$event.stopPropagation()" class="stop-propagation">    
+        <div class="modal" [ngClass]="{'show': openModal, 'hidden': !openModal }">
+            <div class="title-payment">
+            Pagamento para <span class="payment-user-name">{{user?.name}}</span>
             </div>
 
-            <div class="form-group">
-                <div class="container-cards">
-                    <div class="cards">
-                        <select class="select-cards" (change)="cardSelected($event)">
-                        <option *ngFor="let card of cards; let i = index" [value]="card.card_number">Cartão com final {{card.card_number | slice:-4}}</option>
-                        </select>
+            <div class="container-image">
+                <img src="{{user?.img}}" class="img-payment">
+            </div>
+
+            <form [formGroup]="cardForm" (ngSubmit)="submitValues()" >
+                <div class="form-group">
+                    <div class="content">
+                        <input 
+                            type="text" placeholder="R$ 0,00" 
+                            formControlName="value" class="input-value" 
+                            currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'center' }"
+                        />
                     </div>
-                    <div class="cards-flags">
-                        <img src="../../../assets/mastercard-logo.png" class="flag master" *ngIf="cardSelectedObj.flag === 'master' ">
-                        <img src="../../../assets/visa-logo.png" class="flag visa" *ngIf="cardSelectedObj.flag === 'visa'">
+                    <div *ngIf="!cardForm.get('value').valid && 
+                            cardForm.get('value').errors && 
+                            (cardForm.get('value').dirty || cardForm.get('value').touched)">
+                        <small class="text-danger"
+                            *ngIf="cardForm.get('value').hasError('required')">
+                            Digite um valor.
+                        </small>
+                        <small class="text-danger"
+                            *ngIf="cardForm.get('value').hasError('minlength')">
+                            Valor minimo deve ser R$ 0,01.
+                        </small>
                     </div>
                 </div>
-            </div>
 
-            <div class="button-container">
-                <button type="submit" class="pay-button">
-                    Pagar
-                </button>
-            </div>
-        </form>
-        
+                <div class="form-group">
+                    <div class="container-cards">
+                        <div class="cards">
+                            <select class="select-cards" (change)="cardSelected($event)">
+                            <option *ngFor="let card of cards; let i = index" [value]="card.card_number">Cartão com final {{card.card_number | slice:-4}}</option>
+                            </select>
+                        </div>
+                        <div class="cards-flags">
+                            <img src="../../../assets/mastercard-logo.png" class="flag master" *ngIf="cardSelectedObj.flag === 'master' ">
+                            <img src="../../../assets/visa-logo.png" class="flag visa" *ngIf="cardSelectedObj.flag === 'visa'">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="button-container">
+                    <button type="submit" class="pay-button">
+                        Pagar
+                    </button>
+                </div>
+            </form>
+            
+        </div>
     </div>
 </div>

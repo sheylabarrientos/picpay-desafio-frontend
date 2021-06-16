@@ -1,16 +1,18 @@
-<div class="modal-backdrop" [ngClass]="{'show': openModalResult, 'hidden': !openModalResult }">
-  <div class="modal" [ngClass]="{'show': openModalResult, 'hidden': !openModalResult }">
-    <div class="title">
-      Recibo de pagamento para {{user?.name}}
-    </div>
+<div class="modal-backdrop" [ngClass]="{'show': openModalResult, 'hidden': !openModalResult }" (click)="clickout($event)">
+  <div (click)="$event.stopPropagation()" class="stop-propagation">    
+    <div class="modal" [ngClass]="{'show': openModalResult, 'hidden': !openModalResult }">
+      <div class="title">
+        Recibo de pagamento para <br /> {{user?.name}}
+      </div>
 
-    <div class="body">
-      <span class="user-nick"> {{user?.username}} </span><br /> 
-      <span class="text"> recebeu seu pagamento </span>
-    </div>
+      <div class="body">
+        <span class="user-nick"> {{user?.username}} </span><br /> 
+        <span class="text"> recebeu seu pagamento </span>
+      </div>
 
-    <div class="content">
-      O pagamento foi concluido com <b>sucesso</b>.<br />
+      <div class="content">
+        O pagamento foi concluido com <b>sucesso</b>.<br />
+      </div>
     </div>
   </div>
 </div>

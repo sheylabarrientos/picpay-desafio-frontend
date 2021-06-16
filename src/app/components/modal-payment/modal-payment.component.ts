@@ -81,4 +81,9 @@ export class ModalPaymentComponent implements OnInit {
         });
       }
   }
+
+  clickout(e){
+    this.initForm();
+    this.closeModal.emit(true);
+  }
 }

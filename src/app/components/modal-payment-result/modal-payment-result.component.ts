@@ -17,8 +17,14 @@ export class ModalPaymentResultComponent implements OnInit {
   @Output() closeModalResult: EventEmitter<any> = new EventEmitter();
 
   ngOnInit() {
-    console.log("iniciou o result")
+    
   }  
+
+  clickout(event){
+    console.log("click");
+    this.openModalResult = false;
+    this.closeModalResult.emit(true);
+  }
 
 
 

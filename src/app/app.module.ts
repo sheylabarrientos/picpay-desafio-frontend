@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { ModalPaymentComponent } from './components/modal-payment/modal-payment.component';
 import { ModalPaymentResultComponent } from './components/modal-payment-result/modal-payment-result.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
