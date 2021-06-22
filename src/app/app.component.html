@@ -1,56 +1,19 @@
 <div class="users">
-  <div class="user">
-    <img src="https://randomuser.me/api/portraits/men/9.jpg" />
+  <div class="user" *ngFor="let list of images">
+    <img [attr.src]="list.img" alt="Image" title="Image">
     <div class="info-wrapper">
       <div class="user-name">
-        Nome do Usuário X
+        <h4>{{ list.name }}</h4>
       </div>
 
       <div class="user-id-username">
-        ID: X - Username: @usuarioX
+        <p>ID: {{ list.id }} - Username: {{ list.username }}</p>
       </div>
     </div>
-
-    <button type="button" class="pay-button">
+    <button type="button" class="pay-button btn btn-secondary">
       Pagar
     </button>
   </div>
-  <div class="user">
-    <img src="https://randomuser.me/api/portraits/men/12.jpg" />
-    <div class="info-wrapper">
-      <div class="user-name">
-        Nome do Usuário X
-      </div>
-
-      <div class="user-id-username">
-        ID: X - Username: @usuarioX
-      </div>
-    </div>
-    <button type="button" class="pay-button">
-      Pagar
-    </button>
-  </div>
-  <div class="user">
-    <img src="https://randomuser.me/api/portraits/men/13.jpg" />
-    <div class="info-wrapper">
-      <div class="user-name">
-        Nome do Usuário X
-      </div>
-
-      <div class="user-id-username">
-        ID: X - Username: @usuarioX
-      </div>
-    </div>
-
-    <button type="button" class="pay-button">
-      Pagar
-    </button>
-  </div>
-</div>
-<div class="users">
-  <pre>
-    {{ images | json }}
-  </pre>
 </div>
 <div class="modal-backdrop">
   <div class="modal">
@@ -65,7 +28,7 @@
         </select>
       </div>
 
-      <button type="button" class="pay-button">
+      <button type="button" class="btn pay-button" ng-click="activeModal()">
         Pagar
       </button>
     </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Images } from './models/placeholder.model';
 import { CrudService } from './services/crud.service';
 
@@ -9,7 +9,7 @@ import { CrudService } from './services/crud.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  images: Images;
+  images = new Images();
   erro: any;
   title = 'Desafio Picpay Front-end';
   constructor(private crudService: CrudService) {
