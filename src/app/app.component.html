@@ -10,30 +10,33 @@
         <p>ID: {{ list.id }} - Username: {{ list.username }}</p>
       </div>
     </div>
-    <button type="button" class="pay-button btn btn-secondary">
+    <button type="button" class="pay-button btn btn-secondary" (click)="openModal()">
       Pagar
     </button>
   </div>
 </div>
-<div class="modal-backdrop">
-  <div class="modal">
-    <div class="title">Pagamento para <span>Nome do Usuário</span></div>
+<div class="modal-backdrop modal_insert_data">
+  <div class="center_modal">
+    <div class="modal">
+      <div class="title d-flex"><div class="sp">Pagamento para <span>Nome do Usuário</span></div> <i class="fas fa-times fa-2x" (click)="closeModal()"></i></div>
 
-    <div class="content">
-      <input type="number" placeholder="R$ 0,00" />
+      <div class="content">
+        <input type="number" placeholder="R$ 0,00" />
 
-      <div class="cards">
-        <select>
-          <option selected>Cartão com final 0123</option>
-        </select>
+        <div class="cards">
+          <select>
+            <option selected>Cartão com final 0123</option>
+          </select>
+        </div>
+
+        <button type="button" class="btn pay-button">
+          Pagar
+        </button>
       </div>
-
-      <button type="button" class="btn pay-button" ng-click="activeModal()">
-        Pagar
-      </button>
     </div>
   </div>
-
+</div>
+<div class="modal-backdrop modal_received">
   <div class="modal">
     <div class="title">
       Recibo de pagamento

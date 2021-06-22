@@ -11,6 +11,7 @@ import { CrudService } from './services/crud.service';
 export class AppComponent implements OnInit {
   images = new Images();
   erro: any;
+  el: any = document.querySelector('.modal_insert_data');
   title = 'Desafio Picpay Front-end';
   constructor(private crudService: CrudService) {
     this.getter();
@@ -28,5 +29,13 @@ export class AppComponent implements OnInit {
         this.erro = error;
         console.error("ERROR:", error)
       });
+  }
+  openModal() {
+    let element = document.querySelector('.modal_insert_data');
+    element.classList.add('active')
+  }
+  closeModal() {
+    let element = document.querySelector('.modal_insert_data');
+    element.classList.remove('active')
   }
 }
