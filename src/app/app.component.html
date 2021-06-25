@@ -18,20 +18,13 @@
 <div class="modal-backdrop modal_insert_data">
   <div class="center_modal">
     <div class="modal">
-      <div class="title d-flex"><div class="sp">Pagamento para <span>Nome do Usuário</span></div> <i class="fas fa-times fa-2x" (click)="closeModal()"></i></div>
+      <div class="title d-flex">
+        <div class="sp">Pagamento para <span>Nome do Usuário</span></div> <i class="fas fa-times fa-2x"
+          (click)="closeModal()"></i>
+      </div>
 
       <div class="content">
-        <input type="number" placeholder="R$ 0,00" />
-
-        <div class="cards">
-          <select>
-            <option selected>Cartão com final 0123</option>
-          </select>
-        </div>
-
-        <button type="button" class="btn pay-button">
-          Pagar
-        </button>
+       <app-form></app-form>
       </div>
     </div>
   </div>

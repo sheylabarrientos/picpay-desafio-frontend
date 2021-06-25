@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 import { Images } from './models/placeholder.model';
 import { CrudService } from './services/crud.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @Component({
@@ -11,13 +14,22 @@ import { CrudService } from './services/crud.service';
 export class AppComponent implements OnInit {
   images = new Images();
   erro: any;
-  el: any = document.querySelector('.modal_insert_data');
+  // Card Info
+  card_number: string;
+  cvv: number;
+  expiry_date: string;
+  // Destination User ID
+  destination_user_id: number;
+  // Value of the Transaction
+  value: any;
   title = 'Desafio Picpay Front-end';
-  constructor(private crudService: CrudService) {
+
+
+  constructor(private crudService: CrudService, private http: HttpClient) {
+
     this.getter();
   }
-  ngOnInit() {
-
+  ngOnInit(): void {
   }
   getter() {
     this.crudService.getFotos().subscribe(
@@ -37,5 +49,12 @@ export class AppComponent implements OnInit {
   closeModal() {
     let element = document.querySelector('.modal_insert_data');
     element.classList.remove('active')
+  }
+
+  sendValue() {
+    this.http.post('https://run.mocky.io/v3/533cd5d7-63d3-4488-bf8d-4bb8c751c989', FormData)
+      .subscribe(resposta =>
+         console.log('Upload ok.')
+         )
   }
 }

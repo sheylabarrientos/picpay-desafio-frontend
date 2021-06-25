@@ -1,0 +1,23 @@
+<form [formGroup]="userprofileForm" (ngSubmit)="sendValue()">
+    <label>
+        <input type="text" formControlName="card_number" placeholder="Número do Cartão:">
+    </label><br><br>
+    <label>
+        <input type="number" formControlName="cvv" placeholder="CVV:">
+    </label><br><br>
+    <label>
+        <input type="text" formControlName="expiry_date" placeholder="Data de validade:">
+    </label><br><br>
+    <label>
+        <input type="number" formControlName="destination_user_id" placeholder="Id de destino:">
+    </label><br><br>
+    <label>  
+        <input type="text" formControlName="value" placeholder="Valor:">
+    </label><br><br>
+    <button type="submit" class="btn pay-button">Pagar</button>
+</form>
+<div *ngIf="sendValue() === true">
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque sit unde vitae quo incidunt, quae inventore
+        ad distinctio repudiandae deserunt sequi, voluptatem quibusdam doloribus cupiditate. Assumenda, et! Quod,
+        blanditiis quasi.</p>
+</div>
