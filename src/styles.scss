@@ -2,9 +2,114 @@
   box-sizing: border-box;
 }
 
-html,
-body {
-  font-family: sans-serif;
+html, body {
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
+  line-height: inherit;
   margin: 0;
   padding: 0;
+
+  p {
+    font-weight: 450;
+    font-family: inherit;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+  }
+
+  span {
+    font-weight: bold;
+  }  
+
+  section {
+    height: 100%;
+    padding-top: 2.5rem;
+    padding-bottom: 0px;
+    background-color: rgb(38, 50, 36);
+
+    .container {
+      margin: auto;
+        position: relative;
+        display: flex;
+        height: 100%;
+        max-width: 72rem;
+        grid-template-columns: repeat(1, minmax(0px, 1fr));
+
+        .mobile-img {
+          width: 35%;
+          order: 1;
+          overflow: hidden;
+          pointer-events: none;
+          grid-column: span 6 / span 6;  
+
+          .imagem {
+            vertical-align: middle;
+            text-align: center;
+            margin-top: auto;
+            margin-bottom: auto;
+            pointer-events: none;  
+
+            @media (max-width: 640px){
+                display: none;
+                padding: 0px 1rem;
+            }
+          }
+
+          @media (max-width: 1024px){
+              display: none;
+              padding: 0px 1rem;
+          }
+        }
+
+        .hdr-title{
+          display: flex;
+          flex-direction: column;
+          -webkit-box-pack: start;
+          justify-content: flex-start;
+          flex: 1 1 0%;
+          width: 40%;
+          padding-left: 1rem;
+          padding-right: 1rem;
+          margin-left: auto;
+          margin-right: auto;
+          color: rgb(239, 240, 232);
+
+          .title-1 {
+            font-size: 3.0rem;
+            font-stretch: extra-condensed;
+            line-height: 3rem;
+            letter-spacing: 0.015em;
+            font-family: 'Bebas Neue', cursive;
+            font-weight: inherit;
+          }
+        }
+
+        .hdr-title{
+          display: flex;
+          flex-direction: column;
+          -webkit-box-pack: start;
+          justify-content: flex-start;
+          flex: 1 1 0%;
+          width: 40%;
+          padding-left: 1rem;
+          padding-right: 1rem;
+          margin-left: auto;
+          margin-right: auto;
+          color: rgb(239, 240, 232);
+
+          @media (max-width: 748px){
+            padding: 3rem;
+            text-align: center;
+            margin: auto;
+          }
+        }
+
+        @media (max-width: 640px){   
+            padding-left: 0px;
+            padding-right: 0px;    
+        }
+    }
+  }
 }
+  

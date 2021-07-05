@@ -1,5 +1,6 @@
 import { AppPage } from './app.po';
 import { browser, logging } from 'protractor';
+import { TestBed} from '@angular/core/testing';
 
 describe('workspace-project App', () => {
   let page: AppPage;

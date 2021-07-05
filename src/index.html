@@ -1,13 +1,43 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="utf-8" />
-    <title>Picpay Desafio Frontend</title>
-    <base href="/" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
-  </head>
-  <body>
-    <app-root></app-root>
-  </body>
+
+<head>
+  <meta charset="utf-8" />
+  <title>picpay-desafio-frontend</title>
+  <base href="/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+</head>
+
+<body>
+  <section>
+    <div class="container">
+
+      <div class="mobile-img">
+        <picture class="imagem">
+          <source srcset="https://www.picpay.com/_next/static/images/https:picpay-dev-ms-cms-api.s3.amazonaws.comintro_iconizada01_6_5373470890-399-dc8a5623cd2fea8a5bdd97bbc6e3f995.webp" type="image/webp" sizes="(max-width: 399px) 100vw, 399px">
+          <source srcset="https://www.picpay.com/_next/static/images/https:picpay-dev-ms-cms-api.s3.amazonaws.comintro_iconizada01_6_5373470890-399-dc8a5623cd2fea8a5bdd97bbc6e3f995.webp" type="image/png" sizes="(max-width: 399px) 100vw, 399px">
+          <img loading="lazy"
+            src="https://www.picpay.com/_next/static/images/https:picpay-dev-ms-cms-api.s3.amazonaws.comintro_iconizada01_6_5373470890-399-dc8a5623cd2fea8a5bdd97bbc6e3f995.webp"
+            alt="Três celulares empilhados, exibindo na tela o aplicativo do PicPay" width="399" height="321"
+            sizes="(max-width: 399px) 100vw, 399px">
+        </picture>
+      </div>
+
+      <div class="hdr-title">
+        <h3 class="title-1">PICPAY. TODO MUNDO USA, TODO LUGAR ACEITA.</h3>
+    
+        <div class="hdr-text">
+        <p>Com PicPay, você movimenta seu dinheiro e faz todos os seus pagamentos de uma maneira simples e rápida. <span>Tudo
+          pelo celular.</span></p>
+        </div>
+      </div>
+      
+    </div>      
+  </section>
+
+  <app-root></app-root>
+  
+</body>
 </html>

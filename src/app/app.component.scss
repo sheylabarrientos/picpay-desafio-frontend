@@ -1,27 +1,66 @@
 /* List of Users */
+$colorWhite: rgb(255, 255, 255);
+$colorBlack: rgb(0, 0, 0);
+$colorBlackOpacity: rgba(0, 0, 0, 0.5);
+$primaryColor: #21c25e;
+$secondaryColor: rgb(33, 51, 36);
+$greenGradient: linear-gradient(186.5deg, $secondaryColor 0.83%, $primaryColor 100%);
+
 
 .user {
-  background: linear-gradient(186.5deg, #3c3e64 0.83%, #1d1e2a 100%);
-  box-shadow: 0 1px 0 #ffffff, 0px -1px 0px #ffffff;
-  color: #fff;
+  background: $greenGradient;
+  box-shadow: 0 1px 0 $colorWhite, 0px -1px 0px $colorWhite;
+  color: $colorWhite;
   padding: 20px 40px;
-
   display: flex;
   align-items: center;
-}
+  font-weight: bold;  
 
-.user > img {
-  border-radius: 50%;
-  height: 80px;
-  width: 80px;
-}
+  .user-id-username{
+    color: $colorWhite;  
 
-.user > .info-wrapper {
-  margin-left: 16px;
-}
+    span {
+      color: $secondaryColor;
+    }
+  }
 
-.user > .pay-button {
-  margin-left: auto;
+  .user-img {
+    border-radius: 50%;
+    box-shadow: 3px 3px 3px 1px $colorBlackOpacity;
+    height: 80px;
+    width: 80px;
+  }
+
+  .info-wrapper {
+    margin-left: 16px;
+  }
+
+  .button {
+    margin-left: auto;
+    text-align: center; 
+    
+    .pay-button {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: $primaryColor;
+      border: 0px solid $colorBlack;
+      box-shadow: 2px 2px 2px 1px $colorBlackOpacity;
+      margin-left: auto;
+      padding: 8px;
+      font-size: 1.5em;
+      font-weight: bold;
+      text-align: center;
+      color: $colorWhite;  
+    }
+
+    p {
+      color: $colorWhite;
+      font-weight: bold;
+      padding-top: 2px;  
+      font-size: 0.6em;
+    }
+  }
 }
 
 /* Payment Modal */
@@ -37,70 +76,114 @@
 
   height: 100vh;
   width: 100vw;
-}
 
-.modal-backdrop.hidden {
-  display: none;
-}
+  .modal-backdrop.hidden {
+    display: none;
+  }
+  
+  .modal-backdrop:after {
+    content: "";  
+    background: rgba(0, 0, 0, 0.6);
+  
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+  }
 
-.modal-backdrop:after {
-  content: "";
+  .modal > .content > .button {
+    margin-left: auto;
+    text-align: center;
+    
+    .pay-button {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: $primaryColor;
+      border: 0px solid $colorBlack;
+      box-shadow: 2px 2px 2px 1px $colorBlackOpacity;
+      margin-left: auto;
+      margin-top: 16px;
+      padding: 8px;
+      font-size: 1.5em;
+      font-weight: bold;
+      text-align: center;
+      color: $colorWhite;  
+    }
 
-  background: rgba(0, 0, 0, 0.5);
-
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  z-index: -1;
+    p {
+      color: $colorWhite;
+      font-weight: bold;
+      font-size: 0.6em;
+    }
+  }
 }
 
 .modal {
-  background: #fff;
+  border-radius: 20px 0px;
+  background: rgba(0, 0, 0, 0.8);
   margin: 32px 0;
   width: 420px;
-}
-
-.modal > .title {
-  background: #474971;
-  color: #ffffff;
-  font-weight: 500;
+  
+  .title {
+  border-radius: 20px 0px;
+  background: linear-gradient(186.5deg, $primaryColor 0.83%, $primaryColor 100%);
+  color: $colorWhite;
+  font-weight: 700;
   font-size: 16px;
   padding: 16px 24px;
+  }
+  
+  span {
+  color: $secondaryColor;
+  }
+
+  .content {
+    color: $colorWhite;
+    padding: 32px;
+    text-align: center;
+    font-weight: bold;
+
+    p {
+      color: $colorWhite;
+      font-weight: bold;  
+      font-size: 0.6em;
+    }
+
+    input {
+      width: 100%;
+      border: 1px solid $colorBlackOpacity;
+      border-radius: 6px;
+      font-size: 32px;
+      height: 48px;
+      padding: 0 8px;
+    }
+
+    .cards > select {
+      background: $colorWhite;
+      border: 1px solid  $colorWhite;
+      border-radius: 6px;
+      font-size: 32px;
+      height: 48px;
+      margin-top: 12px;
+    }
+  }
 }
 
-.modal > .title > span {
-  color: #cddc39;
-}
-
-.modal > .content {
-  padding: 32px;
+.modal > .content > .message-sucess > .back-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: $primaryColor;
+  border: 0px solid $colorBlack;
+  box-shadow: 2px 2px 2px 1px $colorBlackOpacity;
+  margin-left: auto;
+  margin-top: 16px;
+  padding: 8px;
+  font-size: 1.5em;
+  font-weight: bold;
   text-align: center;
-}
-
-.modal > .content > input {
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 32px;
-  height: 48px;
-  padding: 0 8px;
-}
-
-.modal > .content > .cards > select {
-  background: #fff;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 32px;
-  height: 48px;
-  margin-top: 12px;
-}
-
-.modal > .content > button {
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 32px;
-  height: 48px;
-  padding: 0 8px;
-  margin-top: 24px;
+  color: $colorWhite;  
 }

@@ -1,83 +1,62 @@
+
 <div class="users">
-  <div class="user">
-    <img src="https://randomuser.me/api/portraits/men/9.jpg" />
-    <div class="info-wrapper">
-      <div class="user-name">
-        Nome do Usuário X
+  <div class="content">
+    <div *ngFor="let user of users" class="user">
+      <img class="user-img" src="{{user.img}}" />
+      <div class="info-wrapper">
+        <div class="user-name">
+          {{user.name}}
+        </div>
+        
+        <div class="user-id-username">
+          <span>ID:</span> {{user.id}} - <span>Username:</span> {{user.username}}
+        </div>
       </div>
-
-      <div class="user-id-username">
-        ID: X - Username: @usuarioX
-      </div>
+      <div class="button">
+        <button mat-fab type="button" class="pay-button" (click)="selectUser(user)">
+          <img src="assets/img/donate-solid.svg" />
+        </button>
+      <p>PAGAR</p>
     </div>
-
-    <button type="button" class="pay-button">
-      Pagar
-    </button>
+    </div>
+    <span>picpay-desafio-frontend app is running!</span>  
   </div>
 
-  <div class="user">
-    <img src="https://randomuser.me/api/portraits/men/12.jpg" />
-    <div class="info-wrapper">
-      <div class="user-name">
-        Nome do Usuário X
-      </div>
+  <div class="modal-backdrop" *ngIf="userSelected">
+    <div class="modal">
+      <div class="title">Pagamento para <span>{{userSelected.name}}</span></div>
 
-      <div class="user-id-username">
-        ID: X - Username: @usuarioX
-      </div>
-    </div>
+      <div class="content">
+        <input type="number" placeholder="R$ 0,00" (change)="setValue($event)" />
 
-    <button type="button" class="pay-button">
-      Pagar
-    </button>
-  </div>
-
-  <div class="user">
-    <img src="https://randomuser.me/api/portraits/men/13.jpg" />
-    <div class="info-wrapper">
-      <div class="user-name">
-        Nome do Usuário X
-      </div>
-
-      <div class="user-id-username">
-        ID: X - Username: @usuarioX
+        <div class="cards">
+          <select selected="selected" (change)="setCard($event)">
+            <option value="{{card.card_number}}" *ngFor="let card of cards">Cartão com final
+              {{card.card_number.slice(12, 16)}}</option>
+          </select>
+        </div>
+        <div class="button">
+          <button mat-fab *ngIf="value !== undefined" type="button" class="pay-button" (click)="postPayment()">
+            <img src="assets/img/donate-solid.svg" />
+          </button><p *ngIf="value !== undefined">PAGAR</p>
+        </div>
       </div>
     </div>
 
-    <button type="button" class="pay-button">
-      Pagar
-    </button>
-  </div>
-</div>
-
-<div class="modal-backdrop">
-  <div class="modal">
-    <div class="title">Pagamento para <span>Nome do Usuário</span></div>
-
-    <div class="content">
-      <input type="number" placeholder="R$ 0,00" />
-
-      <div class="cards">
-        <select>
-          <option selected>Cartão com final 0123</option>
-        </select>
+    <div class="modal" *ngIf="success !== undefined">
+      <div class="title">
+        Recibo de pagamento
       </div>
 
-      <button type="button" class="pay-button">
-        Pagar
-      </button>
-    </div>
-  </div>
-
-  <div class="modal">
-    <div class="title">
-      Recibo de pagamento
-    </div>
-
-    <div class="content">
-      O pagamento foi concluido com sucesso.<br />
-      O pagamento <strong>não</strong> foi concluido com sucesso.
+      <div class="content">
+        <div *ngIf="success === true" class="message-sucess">
+          O pagamento foi concluido com sucesso.<br />          
+          <button type="button" class="back-button" (click)="goBack()"><img src="assets/img/home.svg" /></button>
+        </div>
+        <div *ngIf="success !== true" class="message-error">
+          O pagamento <strong>não</strong> foi concluido com sucesso.
+        </div>
+      </div>
     </div>
   </div>
 </div>
